@@ -1,4 +1,4 @@
-package com.scaler.oopsJuly;
+package org.example;
 
 public class BankAccount {
     double balance;

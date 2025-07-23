@@ -1,4 +1,4 @@
-package com.scaler.oopsJuly;
+package org.example;
 
 public class Student {
     // attributes of the com.scaler.oopsJuly.Student class
