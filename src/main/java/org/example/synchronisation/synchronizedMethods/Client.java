@@ -1,14 +1,9 @@
-package org.example.synchronisation.AdderSubtractorSynchronized;
-
-import java.util.HashMap;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+package org.example.synchronisation.synchronizedMethods;
 
 public class Client {
     public static void main(String[] args) throws InterruptedException {
         Count count = new Count();
 
-        System.out.println(count.value);
         /*
         1. Add nums from 1 to 100 to count.value
         2. Subtract nums from 1 to 100 from count.value
@@ -32,17 +27,6 @@ public class Client {
         t1.join();
         t2.join();
 
-        System.out.println(count.value);
+        System.out.println(count.getValue());
     }
 }
-
-/*
-
-Adder Thread: +1, +2, +3, +4, +5
-Subtractor Thread: .............., -1, -2, -3
-
-
-Properties of a lock:
-1. Only one thread can lock the lock at one time
-2.
- */
