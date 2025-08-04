@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.Semaphore;
 
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Queue<Object> store = new ConcurrentLinkedDeque<>();
 
         Semaphore producerSemaphore = new Semaphore(6);
@@ -39,5 +39,17 @@ public class Client {
         Thread t8 = new Thread(c5);
         t8.start();
 
+
+        System.out.println("End of all threads");
     }
 }
+
+/*
+
+P - 3
+c - 3
+
+* * *
+1 2 3 4 5 6
+
+ */

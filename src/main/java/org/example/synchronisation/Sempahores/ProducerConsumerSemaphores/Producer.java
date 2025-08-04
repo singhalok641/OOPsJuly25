@@ -23,13 +23,13 @@ public class Producer implements Runnable{
     public void run() {
         while(true) {
             try {
-                producerSemaphore.acquire();
+                producerSemaphore.acquire(); // -1 on ps
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             System.out.println(this.name + " Adding an element: " + store.size());
             store.add(new Object());
-            consumerSemaphore.release();
+            consumerSemaphore.release(); // +1 on cs
 
         }
     }
