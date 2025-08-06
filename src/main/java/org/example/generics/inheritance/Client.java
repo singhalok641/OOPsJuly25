@@ -55,7 +55,7 @@ public class Client {
     /*
     ? extends is a wildcard that allows you to read from a collection of unknown subtypes
     */
-    public static void printAnimals(List<? extends Animal> animals) {
+    public static void printAnimals(List<? extends Animal> animals) { // List<Dog>, List<Lab>
         for (Animal a : animals) {
             System.out.println(a);
         }
