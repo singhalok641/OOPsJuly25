@@ -29,6 +29,10 @@ public class Client {
 
         Collections.sort(items);
 
+        Collections.sort(items, new ItemNameComparator());
+
+        Collections.sort(items, new ItemQuantityComparator());
+
 
         for (Item item : items) {
             System.out.println(item.getName());
