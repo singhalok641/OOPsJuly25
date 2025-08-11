@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 public class StreamsClient {
     public static void main(String[] args) {
-        List<Integer> list = List.of(2, 72, 3, 4, 6, 6, 62, 10, 1, 9, 8, 9, 12);
+        List<Integer> list = List.of(3, 7, 9, 4, 4, 4, 6, 6, 62, 10, 1, 9, 8, 9, 12);
 
         Stream<Integer> stream =  list.stream(); // create a stream
 
@@ -55,7 +55,7 @@ public class StreamsClient {
                     return x * x;
                 })
                 .distinct()
-                .findAny();
+                .findFirst();
 
         Integer value = null;
         if(optional.isPresent()) {
@@ -63,10 +63,20 @@ public class StreamsClient {
         }
 
         System.out.println(value);
+
+
+        List<Integer> l4= list.stream()
+//                .filter((x) -> {
+//                    System.out.println("Filtering: " + x);
+//                    return  x % 2 == 0;
+//                })
+                .map((x) -> {
+//                    System.out.println("Mapping: " + x);
+                    return x * x;
+                })
+                .distinct()
+                .collect(Collectors.toList());
+
+        System.out.println(l4);
     }
 }
-
-/*
-test(Integer t) {
-matches the testing logic
- */

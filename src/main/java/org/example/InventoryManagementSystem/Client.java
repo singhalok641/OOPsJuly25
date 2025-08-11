@@ -147,112 +147,74 @@ public class Client {
         System.out.println(itemsList1.size());
         System.out.println("Printing all items id in the inventory");
 
-//        Print all item IDs in the inventory using map.
+
+        // Streams Lab
+
+        /*
+        1. Print all item IDs in the inventory using map()
+
+        a. Start a stream from the inventory
+        b. use map() to extract item IDs
+        c. use forEach() to print them
+         */
+
         itemsList1
-                .stream()
-                .map(item -> item.getId())
+                .stream() // Stream<Item>
+                .map(item -> item.getId()) // Stream<String>
                 .forEach(id -> System.out.println(id));
 
-//        Create a list of item names in lowercase and print it.
-        List<String> ans =
-                itemsList1
-                .stream()
-                .map(item -> item.getName().toLowerCase())
-                .collect(Collectors.toList());
+        /*
+        Create a list of item names in lowercase and print it
+
+         */
+
+        List<String> ans = itemsList1
+                .stream() // Stream<Item>
+                .map(item -> item.getName().toLowerCase()) // Stream<String>
+                .toList();
+
         System.out.println(ans);
 
-//        Generate a list of the lengths of item names
-        List<Integer> ans1 =
-                itemsList1
-                        .stream()
-                        .map(item -> item.getName().length())
-                        .collect(Collectors.toList());
+        /*
+        Generate a list of the lengths of item names
+         */
+
+        List<Integer> ans1 = itemsList1
+                .stream() // Stream<Item>
+                .map(item -> item.getName().length()) // Stream<Integer>
+                .toList();
+
         System.out.println(ans1);
 
-//        Find all items priced above 1000 and print their details.
+
+        /*
+        Filtering and Matching
+        Find all items priced above 1000 and print their names
+
+
+         */
+
         itemsList1
-                .stream()
+                .stream() // Stream<Item>
                 .filter(item -> item.getPrice() > 1000)
                 .forEach(item -> System.out.println(item.getName()));
 
-//        Check if any item in the inventory has a quantity of 0 using anyMatch.
 
-    boolean isItemOutOfStock =
-            itemsList1
-                .stream()
-                .anyMatch(item -> item.getQuantity() == 0);
+        // Reduce function
+        // Calculate the total quantity of all items in the inventory
+        int total = itemsList1.stream()
+                .map(item -> item.getQuantity())
+                .reduce(0, (totalSum, quantity) -> totalSum + quantity);
 
-        System.out.println(isItemOutOfStock);
-//        Verify that all items have a price greater than 0 using allMatch.
-        boolean allItemsHasAPriceToPay =  itemsList1
-                .stream()
-                .allMatch(item -> item.getPrice() > 0);
-        System.out.println(allItemsHasAPriceToPay);
+        System.out.println(total);
 
-//        Confirm that no item has a negative quantity using noneMatch
-         itemsList1
-                .stream()
-                .noneMatch(item -> item.getQuantity() < 0);
+        // Find the most expensive item using reduce()
 
-//        Assume the inventory contains various items (e.g., electronics, clothing, books) with attributes like name, price, quantity, and tags. Write a program to achieve the following:
-         List<String> ans3 =   itemsList1
-                    .stream()
-//        Filter items with a price greater than 1000 and a quantity greater than 0 (available stock).
-                    .filter(item -> item.getPrice() > 1000 && item.getQuantity() > 0)
-//        Extract only the names of these items.
-                    .map(item -> item.getName())
-//        Remove duplicate names (if any).
-                    .distinct()
-//        Sort the names in alphabetical order.
-                    .sorted()
-//        Limit the result to the top 5 names.
-                    .limit(5)
-//        Collect the final list into a List<String> and print it.
-                    .collect(Collectors.toList());
-
-
-//        Calculate the total quantity of all items in the inventory.
-
-            int total = 0;
-            for(Item item : itemsList1) {
-                total += item.getQuantity();
-            }
-
-            int total1 = itemsList1
-                    .stream()
-                    .map(item -> item.getQuantity())
-                    .reduce(0, (totalSum , quantity) -> {
-                        totalSum = totalSum + quantity;
-                        return totalSum;
-                    });
-            System.out.println(total1);
-
-//        Find the most expensive item using reduce.
-
-        Item mostExpensiveItem = itemsList1.get(0);
-        for(Item item : itemsList1) {
-            if(item.getPrice() > mostExpensiveItem.getPrice()) {
-                mostExpensiveItem = item;
-            }
-        }
-
-       Optional<Item> mostExpensive = itemsList1
+        Optional<Item> optionalItem = itemsList1
                 .stream()
                 .reduce((item1, item2) -> item1.getPrice() > item2.getPrice() ? item1 : item2);
 
-        System.out.println(mostExpensive.get().getName());
-
-//        Concatenate all item names into a single comma-separated string.
-        Optional<String> stringAns = itemsList1
-                .stream()
-                .map(item -> item.getName())
-                .reduce((concatedString , name) -> {
-                    concatedString = concatedString + ", " + name;
-                    return concatedString;
-                });
-
-        System.out.println(stringAns.get());
-
+        optionalItem.ifPresent(item -> System.out.println(item.getName()));
 
     }
 }
