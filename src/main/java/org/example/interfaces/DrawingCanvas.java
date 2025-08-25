@@ -15,5 +15,14 @@ public class DrawingCanvas {
 
         canvas.render(myCircle); // Renders the circle
         canvas.render(myRectangle); // Renders the rectangle
+
+        Shape shape = new Circle();
+        shape = new Rectangle();
+        Drawable rectangle = new Rectangle();
+        drawShape(rectangle);
+    }
+
+    public static void drawShape(Drawable drawable){
+        drawable.draw();
     }
 }

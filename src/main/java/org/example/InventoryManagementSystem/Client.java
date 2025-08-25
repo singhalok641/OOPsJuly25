@@ -216,5 +216,12 @@ public class Client {
 
         optionalItem.ifPresent(item -> System.out.println(item.getName()));
 
+        String ans10 = itemsList1.stream()
+                .reduce((item1,item2)->item1.getPrice() > item2.getPrice() ? item1 : item2)
+                .map(Item::getName).orElse("No Items");
+
+        System.out.println(ans10);
+//        SOP("Most expensive item:"+ans);
+
     }
 }
