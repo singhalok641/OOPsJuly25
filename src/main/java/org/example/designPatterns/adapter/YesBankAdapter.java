@@ -15,6 +15,7 @@ public class YesBankAdapter implements BankAPI{
     @Override
     public boolean pay(double amount, String account) {
         return false;
+//        yesBank.transferMoney(amount, Long.valueOf(account));
     }
 
     @Override
@@ -23,7 +24,7 @@ public class YesBankAdapter implements BankAPI{
     }
 
     @Override
-    public void transferFunds(String srcAccount, String destAccount, double amount) {
+    public void transferFunds(FundDetails fundDetails) {
 
     }
 }

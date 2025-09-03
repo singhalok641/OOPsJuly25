@@ -15,7 +15,7 @@ public class PhonePe {
         boolean paymentStatus = bankAPI.pay(100.0, "11234134131");
 
         if(paymentStatus) {
-            bankAPI.transferFunds("1224424234", "12342342342342", 50.0);
+            bankAPI.transferFunds(new FundDetails());
         }
     }
 }

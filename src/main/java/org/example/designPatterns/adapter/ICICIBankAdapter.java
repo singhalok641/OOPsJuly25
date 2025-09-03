@@ -17,7 +17,7 @@ public class ICICIBankAdapter implements BankAPI{
     }
 
     @Override
-    public void transferFunds(String srcAccount, String destAccount, double amount) {
+    public void transferFunds(FundDetails fundDetails) {
 
     }
 }
